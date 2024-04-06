@@ -47,7 +47,7 @@ const AllProducts = () => {
 
   return (
     <Box>
-      {/* <Navbar /> */}
+      <Navbar />
       <Box>
         <Text fontSize={"50px"} m={"20px"}>
           Products
@@ -86,7 +86,8 @@ const AllProducts = () => {
                     ) : (
                       <Button
                         variant="solid"
-                        color="skyblue"
+                        backgroundColor={"teal"}
+                        color="white"
                         onClick={() => handleCart(ele, i)}
                       >
                         Add To Cart

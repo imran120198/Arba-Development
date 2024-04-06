@@ -13,6 +13,7 @@ import {
   ButtonGroup,
   Divider,
 } from "@chakra-ui/react";
+import { Navbar } from "./Navbar";
 
 const Cart = () => {
   const [ans, setAns] = useState(1);
@@ -27,6 +28,7 @@ const Cart = () => {
   let cart = JSON.parse(localStorage.getItem("cart")) || 0;
   return (
     <>
+      <Navbar />
       <Box p="10">
         <Box p="20">
           <SimpleGrid columns={[1, 2, 3, 4]} spacing="40px">
@@ -66,7 +68,7 @@ const Cart = () => {
           </SimpleGrid>
         </Box>
         <Box float="right" p="1">
-          <Button bg="(44, 203, 203)" color="white">
+          <Button backgroundColor={"teal"} color="white">
             Checkout
           </Button>
         </Box>

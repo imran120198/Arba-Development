@@ -48,7 +48,7 @@ const Home = () => {
 
   return (
     <div>
-      {/* <Navbar /> */}
+      <Navbar />
       <div>
         <Tc />
         <Carousel />
@@ -86,7 +86,8 @@ const Home = () => {
                     ) : (
                       <Button
                         variant="solid"
-                        color="skyblue"
+                        backgroundColor={"teal"}
+                        color="white"
                         onClick={() => handleCart(ele, i)}
                       >
                         Add To Cart
