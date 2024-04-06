@@ -62,6 +62,7 @@ const Signup = () => {
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit ?</p>
               <form onSubmit={handleSubmit}>
                 <Input
+                  type="text"
                   borderBottom="2px solid skyblue"
                   placeholder="Username"
                   name="username"
@@ -70,6 +71,7 @@ const Signup = () => {
                 />{" "}
                 <br />
                 <Input
+                  type="text"
                   borderBottom="2px solid skyblue"
                   placeholder="FullName"
                   name="fullname"
@@ -78,6 +80,7 @@ const Signup = () => {
                 />{" "}
                 <br />
                 <Input
+                  type="email"
                   borderBottom="2px solid skyblue"
                   placeholder="Email"
                   name="email"
@@ -87,6 +90,7 @@ const Signup = () => {
                 <br />
                 <InputGroup>
                   <Input
+                    type="password"
                     mt={2}
                     placeholder="Password"
                     borderBottom="2px solid skyblue"

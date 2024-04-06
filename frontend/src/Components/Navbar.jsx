@@ -31,21 +31,29 @@ export function Navbar() {
       <Logo />
 
       <Flex gap={"50px"} alignItems={"center"}>
+        <Box position={"relative"}>
+          <Link to={"/cart"}>
+            <FaShoppingCart color={"black"} size={"25px"} />
+          </Link>
+        </Box>
         <Box>
           <Menu>
             <MenuButton>
               <Flex alignItems={"center"} color="white" gap={2}>
-                <Box position={"relative"}>
-                  <Link to={"/cart"}>
-                    <FaShoppingCart color={"black"} size={"25px"} />
-                  </Link>
-                </Box>
+                <Flex alignItems={"center"} color="white" gap={2}>
+                  <Avatar
+                    size={"sm"}
+                    src={
+                      "https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+                    }
+                  />
+                </Flex>
               </Flex>
             </MenuButton>
 
             <MenuList color={"skyblue"} fontWeight="800px">
               <MenuItem>
-                <Link to={"/cart"}>
+                <Link to={"/mystore"}>
                   <Text ml={2}>My Store</Text>
                 </Link>
               </MenuItem>
@@ -62,12 +70,6 @@ export function Navbar() {
             </MenuList>
           </Menu>
         </Box>
-        <Flex alignItems={"center"} color="white" gap={2}>
-          <Avatar
-            size={"sm"}
-            src={"https://cdn-icons-png.flaticon.com/512/3135/3135715.png"}
-          />
-        </Flex>
       </Flex>
     </Flex>
   );

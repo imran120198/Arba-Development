@@ -21,6 +21,7 @@ import { toast, ToastContainer } from "react-toastify";
 
 const AllProducts = () => {
   const [data, setData] = useState([]);
+  const [count, setCount] = useState(0);
   let item = [];
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
 

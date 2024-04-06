@@ -64,6 +64,7 @@ const Login = () => {
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit ?</p>
               <form onSubmit={handleSubmit}>
                 <Input
+                type="email"
                   borderBottom="2px solid skyblue"
                   placeholder="Email"
                   name="email"
@@ -74,6 +75,7 @@ const Login = () => {
                 <InputGroup>
                   <Input
                     mt={2}
+                    type="password"
                     placeholder="Password"
                     borderBottom="2px solid skyblue"
                     name="password"

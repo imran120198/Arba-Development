@@ -9,6 +9,7 @@ import { getData } from "../Redux/action";
 import Profile from "../Pages/Profile";
 import Cart from "../Components/Cart";
 import { Navbar } from "../Components/Navbar";
+import MyStore from "../Components/MyStore";
 
 const AllRoutes = () => {
   const { isLoggedIn, user } = useSelector((state) => state);
@@ -20,7 +21,7 @@ const AllRoutes = () => {
     dispatch(getData(token));
   }, []);
 
-  console.log(token)
+  console.log(token);
 
   return (
     <div>
@@ -31,6 +32,7 @@ const AllRoutes = () => {
         <Route path="/products" element={<AllProduct />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/mystore" element={<MyStore />} />
       </Routes>
     </div>
   );

@@ -22,19 +22,10 @@ import { toast, ToastContainer } from "react-toastify";
 
 const Home = () => {
   const [data, setData] = useState([]);
-  let item = [];
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-  const handleCart = (ele, id) => {
-    console.log(ele);
-    cart.push(ele);
-    localStorage.setItem("cart", JSON.stringify(cart));
-    toast("Product Added to Cart");
-  };
-
-  cart.map((ele) => {
-    item.push(Number(ele.id));
-  });
+  const [cart, setCart] = useState(
+    JSON.parse(localStorage.getItem("cart")) || []
+  );
+  const [count, setCount] = useState(1);
 
   useEffect(() => {
     axios("https://arba-backend-op50.onrender.com/product/getall")
@@ -55,40 +46,52 @@ const Home = () => {
       </div>
       <Box mt={"50px"}>
         <SimpleGrid columns={[1, 2, 3, 4]} gap={"30px"}>
-          {data?.map((ele, i) => {
+          {data?.map((product, i) => {
+            const isInCart = cart.some((item) => item.id === product.id);
             return (
               <Card key={i}>
                 <CardBody>
                   <Image
                     width={"100%"}
                     height={"200px"}
-                    src={ele.image}
+                    src={product.image}
                     alt="image"
                     borderRadius="sm"
                   />
                   <Stack mt="6" spacing="3" textAlign={"justify"}>
-                    <Heading size="md">{ele.title}</Heading>
-                    <Text>{ele.description}</Text>
+                    <Heading size="md">{product.title}</Heading>
+                    <Text>{product.description}</Text>
                     <Text color="skyblue" fontSize="2xl">
-                      ₹{ele.price}
+                      ₹{product.price}
                     </Text>
                   </Stack>
                 </CardBody>
                 <Divider />
                 <CardFooter>
                   <ButtonGroup spacing="0">
-                    {item.includes(ele.id) ? (
+                    {isInCart ? (
                       <Box alignItems={"center"}>
-                        <Button>+</Button>
-                        {1}
-                        <Button>-</Button>
+                        <Button
+                          onClick={() => setCount(Math.max(count - 1, 1))}
+                        >
+                          -
+                        </Button>
+                        {count}
+                        <Button onClick={() => setCount(count + 1)}>+</Button>
                       </Box>
                     ) : (
                       <Button
                         variant="solid"
                         backgroundColor={"teal"}
                         color="white"
-                        onClick={() => handleCart(ele, i)}
+                        onClick={() => {
+                          setCart([...cart, product]); // Adding the product to cart state
+                          localStorage.setItem(
+                            "cart",
+                            JSON.stringify([...cart, product])
+                          ); // Updating localStorage
+                          toast("Product Added to Cart");
+                        }}
                       >
                         Add To Cart
                       </Button>
