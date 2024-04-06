@@ -7,12 +7,13 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
-  const [form, setForm] = useState([]);
+  const [form, setForm] = useState({ email: "", password: "" });
+  const [isFormFilled, setIsFormFilled] = useState(false);
 
   const handleChange = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-    setForm((values) => ({ ...values, [name]: value }));
+    const { name, value } = e.target;
+    setForm((prevForm) => ({ ...prevForm, [name]: value }));
+    setIsFormFilled(form.email !== "" && form.password !== "");
   };
 
   const handleSubmit = (e) => {
@@ -21,7 +22,8 @@ const Login = () => {
       .post("https://arba-backend-op50.onrender.com/user/login", form)
       .then((res) => {
         console.log(res.data);
-        toast("Login Successfull");
+        localStorage.setItem("token", res.data.token);
+        toast("Login Successful");
       })
       .catch((err) => console.error(err));
   };
@@ -63,7 +65,7 @@ const Login = () => {
               <form onSubmit={handleSubmit}>
                 <Input
                   borderBottom="2px solid skyblue"
-                  placeholder="Username"
+                  placeholder="Email"
                   name="email"
                   value={form.email}
                   onChange={handleChange}
@@ -80,15 +82,18 @@ const Login = () => {
                   />
                   <br />
                 </InputGroup>
-                <Button
-                  mt={3}
-                  _hover="none"
-                  width={"full"}
-                  bgColor="rgb(44, 203, 203)"
-                  type="submit"
-                >
-                  <Link to={"/home"}>Login</Link>
-                </Button>
+                <Link to="/home">
+                  <Button
+                    mt={3}
+                    _hover="none"
+                    width={"full"}
+                    bgColor="rgb(44, 203, 203)"
+                    type="submit"
+                    disabled={!isFormFilled}
+                  >
+                    Login
+                  </Button>
+                </Link>
               </form>
 
               <h5>

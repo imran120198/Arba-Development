@@ -20,6 +20,8 @@ const AllRoutes = () => {
     dispatch(getData(token));
   }, []);
 
+  console.log(token)
+
   return (
     <div>
       <Routes>
