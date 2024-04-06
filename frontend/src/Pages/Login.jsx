@@ -4,7 +4,7 @@ import { Box, InputGroup, Stack, Input, Button, Text } from "@chakra-ui/react";
 import { Side } from "../Components/Side";
 import { Link } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const [form, setForm] = useState([]);
@@ -20,9 +20,9 @@ const Login = () => {
     axios
       .post("https://arba-backend-op50.onrender.com/user/login", form)
       .then((res) => {
-        console.log(res.data)
-        toast("Login Successfull")
-    })
+        console.log(res.data);
+        toast("Login Successfull");
+      })
       .catch((err) => console.error(err));
   };
 
@@ -87,7 +87,7 @@ const Login = () => {
                   bgColor="rgb(44, 203, 203)"
                   type="submit"
                 >
-                  Login
+                  <Link to={"/home"}>Login</Link>
                 </Button>
               </form>
 

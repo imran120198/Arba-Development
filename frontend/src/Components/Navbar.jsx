@@ -45,7 +45,7 @@ export function Navbar() {
 
             <MenuList color={"skyblue"} fontWeight="800px">
               <MenuItem>
-                <Link to={"/"}>
+                <Link to={"/cart"}>
                   <Text ml={2}>My Store</Text>
                 </Link>
               </MenuItem>

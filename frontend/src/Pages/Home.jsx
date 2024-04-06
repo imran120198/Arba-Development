@@ -18,9 +18,23 @@ import {
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
 
 const Home = () => {
   const [data, setData] = useState([]);
+  let item = [];
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  const handleCart = (ele, id) => {
+    console.log(ele);
+    cart.push(ele);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    toast("Product Added to Cart");
+  };
+
+  cart.map((ele) => {
+    item.push(Number(ele.id));
+  });
 
   useEffect(() => {
     axios("https://arba-backend-op50.onrender.com/product/getall")
@@ -34,7 +48,7 @@ const Home = () => {
 
   return (
     <div>
-      <Navbar />
+      {/* <Navbar /> */}
       <div>
         <Tc />
         <Carousel />
@@ -63,9 +77,21 @@ const Home = () => {
                 <Divider />
                 <CardFooter>
                   <ButtonGroup spacing="0">
-                    <Button variant="solid" backgroundColor="skyblue">
-                      Add To Cart
-                    </Button>
+                    {item.includes(ele.id) ? (
+                      <Box alignItems={"center"}>
+                        <Button>+</Button>
+                        {1}
+                        <Button>-</Button>
+                      </Box>
+                    ) : (
+                      <Button
+                        variant="solid"
+                        color="skyblue"
+                        onClick={() => handleCart(ele, i)}
+                      >
+                        Add To Cart
+                      </Button>
+                    )}
                   </ButtonGroup>
                 </CardFooter>
               </Card>
@@ -86,6 +112,7 @@ const Home = () => {
           </Button>
         </Link>
       </Box>
+      <ToastContainer />
     </div>
   );
 };

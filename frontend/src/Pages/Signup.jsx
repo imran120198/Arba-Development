@@ -109,7 +109,7 @@ const Signup = () => {
 
               <h5>
                 Already have an account?{" "}
-                <Link to={"/home"} style={{ color: "skyblue" }}>
+                <Link to={"/"} style={{ color: "skyblue" }}>
                   Login
                 </Link>
               </h5>

@@ -12,13 +12,17 @@ import {
   ButtonGroup,
   Image,
   Divider,
+  Toast,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { Navbar } from "./Navbar";
+import { toast, ToastContainer } from "react-toastify";
 
 const AllProducts = () => {
   const [data, setData] = useState([]);
+  let item = [];
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
   useEffect(() => {
     axios("https://arba-backend-op50.onrender.com/product/getall")
@@ -30,9 +34,25 @@ const AllProducts = () => {
       });
   }, []);
 
+  const handleCart = (ele, id) => {
+    console.log(ele);
+    cart.push(ele);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    toast("Product Added to Cart");
+  };
+
+  cart.map((ele) => {
+    item.push(Number(ele.id));
+  });
+
   return (
     <Box>
-      <Navbar />
+      {/* <Navbar /> */}
+      <Box>
+        <Text fontSize={"50px"} m={"20px"}>
+          Products
+        </Text>
+      </Box>
       <Box>
         <SimpleGrid columns={[1, 2, 3, 4]} spacing="40px">
           {data.map((ele, i) => {
@@ -57,7 +77,21 @@ const AllProducts = () => {
                 <Divider />
                 <CardFooter>
                   <ButtonGroup spacing="0">
-                    <Button variant="solid" backgroundColor="skyblue">Add to Cart</Button>
+                    {item.includes(ele.id) ? (
+                      <Box alignItems={"center"}>
+                        <Button>+</Button>
+                        {1}
+                        <Button>-</Button>
+                      </Box>
+                    ) : (
+                      <Button
+                        variant="solid"
+                        color="skyblue"
+                        onClick={() => handleCart(ele, i)}
+                      >
+                        Add To Cart
+                      </Button>
+                    )}
                   </ButtonGroup>
                 </CardFooter>
               </Card>
@@ -78,6 +112,7 @@ const AllProducts = () => {
           </Button>
         </Link>
       </Box>
+      <ToastContainer />
     </Box>
   );
 };
