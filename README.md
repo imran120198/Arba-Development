@@ -15,13 +15,15 @@
 * MongoDB
 * React-Toastify
 * Crousal
+* Cloudinary
+* Multer
 
 ## Endpoints
 
 ### User
 ```
 user/signup - for signup
-user/login - for login
+user/login - for login (email : "ik048941@gmail" and password : "imran")
 user/update/:id - for updating user data
 user/changepassword/:id - for Change Password
 ```
