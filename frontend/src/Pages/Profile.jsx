@@ -1,10 +1,12 @@
 import React from "react";
 import { Box, Image, Stack, Text, Button, Flex } from "@chakra-ui/react";
 import { Tc } from "../Components/T&C";
+import { Navbar } from "../Components/Navbar";
 
 const Profile = () => {
   return (
     <Stack spacing={5}>
+      <Navbar />
       <Box boxShadow={"md"} m={"auto"} mt={"4%"} w={"300px"} borderRadius={10}>
         <Box w={"100%"} borderRadius={10}>
           <Image
